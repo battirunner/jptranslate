@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('createjson', 'AdminController@showcreatejson')->name('showcreatejson');
+Route::post('createjson', 'AdminController@createnewjson')->name('createnewjson');
+Route::get('showjson', 'AdminController@showjson')->name('showjson');
