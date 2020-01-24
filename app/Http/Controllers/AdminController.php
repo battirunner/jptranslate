@@ -14,8 +14,35 @@ class AdminController extends Controller
     {
         if(request('id'))
         {
-
+            $jplist = Jplist::where('id',request('id'))->get()->first();
         }
+        $jsonString = file_get_contents(base_path('resources/lang/'.$jplist->json_name));
+        $json_data = json_decode($jsonString, true);
+        $json_data_reverse = [];
+        $json_sorted = [];
+        $key_list = [];
+        $key_list_reverse = [];
+        $json_reverse_sorted = [];
+        foreach($json_data as $key=>$data)
+        {
+            $key_list[] = $key;
+            $key_list_reverse[] = $data;
+            $json_data_reverse[$data] = $key;
+        }
+        sort($key_list);
+        sort($key_list_reverse);
+        foreach($key_list as $key)
+        {
+            $json_sorted[$key] = $json_data[$key];
+        }
+        foreach($key_list_reverse as $key)
+        {
+            $json_reverse_sorted[$key] = $json_data_reverse[$key];
+        }
+        
+        
+
+        return view('showjsondata',compact('json_sorted','json_reverse_sorted'));
     }
     public function showcreatejson()
     {
@@ -25,21 +52,23 @@ class AdminController extends Controller
     public function createnewjson(Request $request)
     {
         $jplists = Jplist::get();
-        dd($request);
+        // dd($request);
 
         $json_data = [];
         $eng = $request->en;
         $jp = $request->jp;
         
-        for($i=0,$j=0;$i<count($eng);$i++,$j++)
-        {
-            if($eng[$i])
-                $json_data[$eng[$i]]=$jp[$j];
-            
-            // echo $eng
-        }
+
         if($request->newfilename)
         {
+            for($i=0,$j=0;$i<count($eng);$i++,$j++)
+            {
+                if($eng[$i])
+                    $json_data[$eng[$i]]=$jp[$j];
+                
+                // echo $eng
+            }
+
             $newjson = new Jplist;
             $input_data = $json_data;
             // dd(count($eng),$json_data,$input_data);
@@ -54,13 +83,26 @@ class AdminController extends Controller
                 }
 
         }
-        else 
+        if($request->id) 
         {
             $jplists = $request->id;
             foreach($jplists as $list)
             {
+                // dd($list);
+                $jsonString = file_get_contents(base_path('resources/lang/'.$list));
+                $json_data = json_decode($jsonString, true);
+
+                for($i=0,$j=0;$i<count($eng);$i++,$j++)
+                {
+                    if($eng[$i])
+                        $json_data[$eng[$i]]=$jp[$j];
                 
-                // if()
+                }
+
+                $newJsonString = json_encode($json_data, JSON_PRETTY_PRINT);
+
+                $path =  file_put_contents(base_path('resources/lang/'.$list) , $newJsonString);
+                
             }
         }
         // dd($request->filename);
@@ -70,6 +112,6 @@ class AdminController extends Controller
         
      //    dd($path);
         if($path)
-            return route('show');
+            return redirect()->route('showjson');
     }
 }

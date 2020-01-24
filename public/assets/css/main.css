@@ -166,6 +166,14 @@ iframe {
   background-color: #fff;
 }
 
+.table100.table200 {
+  /* background-color: #fff; */
+  width: 40%;
+  float: left;
+  margin: 20px;
+}
+
+
 table {
   width: 100%;
 }
