@@ -44,27 +44,28 @@
 								@csrf
 								@foreach ($json_sorted as $key=>$jp)
 									<tr class="row100 body">
-										<td class="cell100 column1"><input type="text" name="en[]" class="check" value="{{$key}}"></td>
-										<td class="cell100 column1"><input type="text" name="jp[]" class="check" value="{{$jp}}" ></td>
+										<td class="cell100 column1"><input type="text" name="en[]" class="check1" value="{{$key}}"></td>
+										<td class="cell100 column1"><input type="text" name="jp[]" class="check1" value="{{$jp}}" ></td>
 										{{-- <td class="cell100 column1"><input type="text" name="en[]"></td>
 										<td class="cell100 column1"><input type="text" name="jp[]"></td> --}}
 											{{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
 									</tr>
 								@endforeach
-								
+								<input type="hidden" value="{{$id}}" name="id">
                                 <tr class="row100 body">
                                     <td class="cell100 column1" >
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </td>
 								</tr>
+
                                 <div class="checkbox">
                                    
                                     
                                     {{-- <label class="checkbox_1"><input type="checkbox" value="">Option 3</label>
                                     <label class="checkbox_1"><input type="checkbox" value="">Option 2</label>
                                     <label class="checkbox_1"><input type="checkbox" value="">Option 3</label> --}}
-									<label class="checkbox_1"><input type="text" value="" placeholder="ex: en.json" name="searchkey" id="searchkey"></label>
-									<button class="btn btn-danger pull-right" onclick="search()" type="button" >Search </button>
+									<label class="checkbox_1"><input type="text" value="" placeholder="search key" name="searchkey" id="searchkey1"></label>
+									<button class="btn btn-danger pull-right" onclick="search(1)" type="button" >Search </button>
                                 </div>
                                 </form>
 							</tbody>
@@ -91,14 +92,14 @@
 								@csrf
 								@foreach ($json_reverse_sorted as $key=>$jp)
 									<tr class="row100 body">
-									<td class="cell100 column1"><input type="text" name="en[]" class="check" value="{{$key}}"></td>
-										<td class="cell100 column1"><input type="text" name="jp[]" class="check" value="{{$jp}}" ></td>
+										<td class="cell100 column1"><input type="text" name="en[]" class="check2" value="{{$key}}"></td>
+										<td class="cell100 column1"><input type="text" name="jp[]" class="check2" value="{{$jp}}" ></td>
 										{{-- <td class="cell100 column1"><input type="text" name="en[]"></td>
 										<td class="cell100 column1"><input type="text" name="jp[]"></td> --}}
 											{{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
 									</tr>
 								@endforeach
-								
+								<input type="hidden" value="{{$id}}" name="id">
                                 <tr class="row100 body">
                                     <td class="cell100 column1" >
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -110,8 +111,8 @@
                                     {{-- <label class="checkbox_1"><input type="checkbox" value="">Option 3</label>
                                     <label class="checkbox_1"><input type="checkbox" value="">Option 2</label>
                                     <label class="checkbox_1"><input type="checkbox" value="">Option 3</label> --}}
-									<label class="checkbox_1"><input type="text" value="" placeholder="ex: en.json" name=""> </label>
-									<button class="btn btn-danger pull-right" onclick="search()" type="button" >Search </button>
+									<label class="checkbox_1"><input type="text" value="" placeholder="search key" name="" id="searchkey2"> </label>
+									<button class="btn btn-danger pull-right" onclick="search(2)" type="button" >Search </button>
                                 </div>
                                 </form>
 							</tbody>
@@ -146,17 +147,21 @@
 	<script src="/assets/js/main.js"></script>
 
 	<script>
-	function search()
+	function search(type)
 	{
 		// alert("chekku shimasu");
 		// return false;
-		var key = document.getElementById('searchkey');
-		var all = document.getElementsByClassName('check');
+		var key = document.getElementById('searchkey'+type);
+		var all = document.getElementsByClassName('check'+type);
+		for(i = 0; all[i]!=null; i++)
+		{
+				all[i].style="";
+		}
 		// var Cells = all.getElementsByTagName("td");
 		for(i = 0; all[i]!=null; i++)
 		{
 			if(all[i].value.indexOf(key.value) == 0)
-				all[i].style="background-color: red";
+				all[i].style="background-color: rgb(172, 172, 172)";
 		}
 		// console.log(all[1].style = "background-color: red");
 

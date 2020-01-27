@@ -10,11 +10,17 @@ use App\Jplist;
 class AdminController extends Controller
 {
     //
+    public function index()
+    {
+        $jplist = Jplist::get();
+        return view('home', compact('jplist'));
+    }
     public function showjson()
     {
         if(request('id'))
         {
             $jplist = Jplist::where('id',request('id'))->get()->first();
+            $id = request('id');
         }
         $jsonString = file_get_contents(base_path('resources/lang/'.$jplist->json_name));
         $json_data = json_decode($jsonString, true);
@@ -29,8 +35,8 @@ class AdminController extends Controller
             $key_list_reverse[] = $data;
             $json_data_reverse[$data] = $key;
         }
-        sort($key_list);
-        sort($key_list_reverse);
+        natcasesort($key_list);
+        natcasesort($key_list_reverse);
         foreach($key_list as $key)
         {
             $json_sorted[$key] = $json_data[$key];
@@ -42,7 +48,7 @@ class AdminController extends Controller
         
         
 
-        return view('showjsondata',compact('json_sorted','json_reverse_sorted'));
+        return view('showjsondata',compact('json_sorted','json_reverse_sorted','id'));
     }
     public function showcreatejson()
     {

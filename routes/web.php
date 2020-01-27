@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AdminController@index')->name('home');
 Route::get('test', function () {
     return view('test');
 });
