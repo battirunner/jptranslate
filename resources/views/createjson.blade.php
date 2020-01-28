@@ -34,7 +34,7 @@
                                     <th class="cell100 column1">Japanese</th>
                                     <th class="cell100 column1">English</th>
                                     <th class="cell100 column1">Japanese</th>
-{{--                                     
+                                    {{--                                     
 									<th class="cell100 column3">Hours</th>
 									<th class="cell100 column4">Trainer</th>
 									<th class="cell100 column5">Spots</th> --}}
@@ -45,7 +45,7 @@
 					<div class="table100-body js-pscroll">
 						<table>
 							<tbody>
-                                <form action="{{route('createnewjson')}}" method="POST" >
+                                <form action="{{route('createnewjson')}}" method="POST" onsubmit="return validateForm()" >
                                 @csrf
 								<tr class="row100 body">
                                     <td class="cell100 column1"><input type="text" name="en[]"></td>
@@ -88,9 +88,9 @@
                                     </td>
                                 </tr>
                                 <div class="checkbox">
+                                    <input type="hidden" id="json_count">
                                     @foreach ($jplists as $item)
-                                        <label class="checkbox_1"><input type="checkbox" value="{{$item->json_name}}" name="id[]">{{$item->json_name}}</label>
-
+                                        <label class="checkbox_1"><input type="checkbox" value="{{$item->json_name}}" name="id[]" >{{$item->json_name}}</label>
                                     @endforeach
                                     
                                     {{-- <label class="checkbox_1"><input type="checkbox" value="">Option 3</label>
@@ -124,6 +124,9 @@
 		// 		ps.update();
 		// 	})
 		// });
+        function validateForm() {
+            var x = document.forms[]
+        }
 			
 		
 	</script>
