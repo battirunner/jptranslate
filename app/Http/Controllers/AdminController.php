@@ -118,6 +118,6 @@ class AdminController extends Controller
         
      //    dd($path);
         if($path)
-            return redirect()->route('showjson');
+            return redirect()->route('home');
     }
 }

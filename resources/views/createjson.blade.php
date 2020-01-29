@@ -45,59 +45,61 @@
 					<div class="table100-body js-pscroll">
 						<table>
 							<tbody>
-                                <form action="{{route('createnewjson')}}" method="POST" onsubmit="return validateForm()" >
-                                @csrf
-								<tr class="row100 body">
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                <form name="myForm" action="{{route('createnewjson')}}" onsubmit="return validateForm({{count($jplists)}})"  method="POST">
+                                    @csrf
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                            {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
+                                    </tr>
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
                                         {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
-                                </tr>
-                                <tr class="row100 body">
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
-                                </tr>
-                                <tr class="row100 body">
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
-                                </tr>
-                                <tr class="row100 body">
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
-                                </tr>
-                                <tr class="row100 body">
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="en[]"></td>
-                                    <td class="cell100 column1"><input type="text" name="jp[]"></td>
-                                    {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
-                                </tr>
-                                <tr class="row100 body">
-                                    <td class="cell100 column1" >
-                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                    </td>
-                                </tr>
-                                <div class="checkbox">
-                                    <input type="hidden" id="json_count">
-                                    @foreach ($jplists as $item)
-                                        <label class="checkbox_1"><input type="checkbox" value="{{$item->json_name}}" name="id[]" >{{$item->json_name}}</label>
-                                    @endforeach
+                                    </tr>
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
+                                    </tr>
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
+                                    </tr>
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="en[]"></td>
+                                        <td class="cell100 column1"><input type="text" name="jp[]"></td>
+                                        {{-- <td class="cell100 column5"><button type="submit" class="btn btn-primary" >Submit</button></td> --}}
+                                    </tr>
                                     
-                                    {{-- <label class="checkbox_1"><input type="checkbox" value="">Option 3</label>
-                                    <label class="checkbox_1"><input type="checkbox" value="">Option 2</label>
-                                    <label class="checkbox_1"><input type="checkbox" value="">Option 3</label> --}}
-                                    <label class="checkbox_1"><input type="text" value="" placeholder="ex: en.json" name="newfilename">New</label>
-                                </div>
+                                    <div class="checkbox">
+                                        <input type="hidden" id="json_count">
+                                        @foreach ($jplists as $item)
+                                            <label class="checkbox_1"><input type="checkbox" value="{{$item->json_name}}" name="id[]" class="checkbox_list">{{$item->json_name}}</label>
+                                        @endforeach
+                                        
+                                        {{-- <label class="checkbox_1"><input type="checkbox" value="">Option 3</label>
+                                        <label class="checkbox_1"><input type="checkbox" value="">Option 2</label>
+                                        <label class="checkbox_1"><input type="checkbox" value="">Option 3</label> --}}
+                                        <label class="checkbox_1"><input type="text" value="" placeholder="ex: en.json" name="newfilename">New</label>
+                                    </div>
+
+                                    <tr class="row100 body">
+                                        <td class="cell100 column1" >
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </td>
+                                    </tr>
                                 </form>
 							</tbody>
 						</table>
@@ -124,8 +126,24 @@
 		// 		ps.update();
 		// 	})
 		// });
-        function validateForm() {
-            var x = document.forms[]
+        function validateForm(list)
+        {
+            var x = document.forms["myForm"]["newfilename"].value;
+            var checkbox = document.getElementsByClassName("checkbox_list");
+            var checkbox_result = false;
+            // alert(checkbox[1].checked);
+            for(var i=0 ; i < list ; i++)
+            {
+                if(checkbox[i].checked == true ) checkbox_result = true;
+            }
+            if(x == "" && checkbox_result == false)
+            {
+                alert("You need to select the json file name or new filename");
+                return false;
+            }
+
+            // return false;
+            
         }
 			
 		
