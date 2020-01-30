@@ -12,8 +12,14 @@ class AdminController extends Controller
     //
     public function index()
     {
+
+        return view('home');
+    }
+    public function adminDashboard()
+    {
         $jplist = Jplist::get();
-        return view('home', compact('jplist'));
+
+        return view('dashboard' , compact('jplist'));
     }
     public function showjson()
     {
