@@ -19,10 +19,10 @@ Route::get('test', function () {
 Route::get('login', 'LoginController@showLoginform')->name('login');
 Route::post('login', 'LoginController@Login')->name('login');
 Route::get('logout', 'LoginController@Logout')->name('logout');
-Route::get('createjson', 'AdminController@showcreatejson')->name('showcreatejson');
-Route::post('createjson', 'AdminController@createnewjson')->name('createnewjson');
-Route::get('showjson', 'AdminController@showjson')->name('showjson');
+Route::get('createjson', 'AdminController@showcreatejson')->name('showcreatejson')->middleware('auth');
+Route::post('createjson', 'AdminController@createnewjson')->name('createnewjson')->middleware('auth');
+Route::get('showjson', 'AdminController@showjson')->name('showjson')->middleware('auth');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
