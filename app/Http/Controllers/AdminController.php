@@ -28,7 +28,7 @@ class AdminController extends Controller
             $jplist = Jplist::where('id',request('id'))->get()->first();
             $id = request('id');
         }
-        $jsonString = file_get_contents(storage_path('app/public/json'.$jplist->json_name));
+        $jsonString = file_get_contents(storage_path('app/public/json/'.$jplist->json_name));
         $json_data = json_decode($jsonString, true);
         $json_data_reverse = [];
         $json_sorted = [];
@@ -130,7 +130,7 @@ class AdminController extends Controller
     {
         $jplist = Jplist::where('id',request('id'))->get()->first();
 
-        $jsonString = file_get_contents(storage_path('app/public/json'.$jplist->json_name));
+        $jsonString = file_get_contents(storage_path('app/public/json/'.$jplist->json_name));
         // echo $request->id;
         return $jsonString;
     }
