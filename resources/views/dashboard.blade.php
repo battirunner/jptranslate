@@ -70,9 +70,9 @@
             .m-b-md img {
                 height: 300px;
                 width: 300px;
-                border-radius: 50%; 
+                border-radius: 50%;
             }
-            
+
         </style>
     </head>
     <body>
@@ -108,10 +108,11 @@
                     <a href="{{route('createnewjson')}}" class="btn btn-primary btn-lg">Create New Json</a>
                     <a href="{{route('createnewjson')}}" class="btn btn-primary btn-lg" >Add in existing Json</a>
                     <a href="#" onclick="showjson()" class="btn btn-primary btn-lg" >show Json</a>
+                    <a href="#" onclick="downloadjson()" class="btn btn-primary btn-lg" >Download Json</a>
                     <select name="" id="json_list">
                         <option value="">Select One Jsonfile</option>
                         @foreach ($jplist as $item)
-                        <option value="{{$item->id}}"> {{$item->json_name}} </option>   
+                        <option value="{{$item->id}}"> {{$item->json_name}} </option>
                         @endforeach
                     </select>
                     @endauth
@@ -123,7 +124,7 @@
                 </div>
 
                 <div>
-                   
+
                 </div>
             </div>
         </div>
@@ -140,6 +141,16 @@
                     }
                     window.location.href = '/showjson?id='+id;
 
+            }
+            function downloadjson()
+            {
+                var id = document.getElementById('json_list').value;
+                if(!id)
+                    {
+                        alert("Please select a JSON file");
+                        return false;
+                    }
+                    window.location.href = '/downloadjson?id='+id;
             }
         </script>
     </body>
