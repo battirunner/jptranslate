@@ -28,7 +28,7 @@ class AdminController extends Controller
             $jplist = Jplist::where('id',request('id'))->get()->first();
             $id = request('id');
         }
-        $jsonString = file_get_contents(base_path('resources/lang/'.$jplist->json_name));
+        $jsonString = file_get_contents(storage_path('app/public/json'.$jplist->json_name));
         $json_data = json_decode($jsonString, true);
         $json_data_reverse = [];
         $json_sorted = [];
@@ -86,7 +86,7 @@ class AdminController extends Controller
             // dd(count($eng),$json_data,$input_data);
             $newJsonString = json_encode($input_data, JSON_PRETTY_PRINT);
             // $json_data = "aaa";
-            $path =  file_put_contents(base_path('resources/lang/'.$request->newfilename) , $newJsonString);
+            $path =  file_put_contents(storage_path('app/public/json/'.$request->newfilename) , $newJsonString);
             if($path)
                 {
                     $newjson->json_name = $request->newfilename;
