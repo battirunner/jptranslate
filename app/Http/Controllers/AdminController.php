@@ -132,6 +132,7 @@ class AdminController extends Controller
 
         $jsonString = file_get_contents(storage_path('app/public/json/'.$jplist->json_name));
         // echo $request->id;
-        return response()->download($jsonString);
+        // return response()->download($jsonString);
+        return $jsonString;
     }
 }
