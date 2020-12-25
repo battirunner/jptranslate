@@ -22,6 +22,8 @@ Route::get('logout', 'LoginController@Logout')->name('logout');
 Route::get('createjson', 'AdminController@showcreatejson')->name('showcreatejson')->middleware('auth');
 Route::post('createjson', 'AdminController@createnewjson')->name('createnewjson')->middleware('auth');
 Route::get('showjson', 'AdminController@showjson')->name('showjson')->middleware('auth');
+Route::get('downloadjson', 'AdminController@downloadjson')->name('downloadjson')->middleware('auth');
+
 
 // Auth::routes();
 

@@ -51,8 +51,8 @@ class AdminController extends Controller
         {
             $json_reverse_sorted[$key] = $json_data_reverse[$key];
         }
-        
-        
+
+
 
         return view('showjsondata',compact('json_sorted','json_reverse_sorted','id'));
     }
@@ -69,7 +69,7 @@ class AdminController extends Controller
         $json_data = [];
         $eng = $request->en;
         $jp = $request->jp;
-        
+
 
         if($request->newfilename)
         {
@@ -77,7 +77,7 @@ class AdminController extends Controller
             {
                 if($eng[$i])
                     $json_data[$eng[$i]]=$jp[$j];
-                
+
                 // echo $eng
             }
 
@@ -95,7 +95,7 @@ class AdminController extends Controller
                 }
 
         }
-        if($request->id) 
+        if($request->id)
         {
             $jplists = $request->id;
             foreach($jplists as $list)
@@ -108,22 +108,26 @@ class AdminController extends Controller
                 {
                     if($eng[$i])
                         $json_data[$eng[$i]]=$jp[$j];
-                
+
                 }
 
                 $newJsonString = json_encode($json_data, JSON_PRETTY_PRINT);
 
                 $path =  file_put_contents(base_path('resources/lang/'.$list) , $newJsonString);
-                
+
             }
         }
         // dd($request->filename);
         // Storage::putFileAs('json', new File('/storage/'.$request->filename), $request->filename);
         // File::put('/storage/'.$request->filename , '');
-        
-        
+
+
      //    dd($path);
         if($path)
             return redirect()->route('home');
+    }
+    public function downloadjson(Request $request)
+    {
+        echo $request->id;
     }
 }
