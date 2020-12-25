@@ -101,7 +101,7 @@ class AdminController extends Controller
             foreach($jplists as $list)
             {
                 // dd($list);
-                $jsonString = file_get_contents(base_path('resources/lang/'.$list));
+                $jsonString = file_get_contents(storage_path('app/public/json/'.$list));
                 $json_data = json_decode($jsonString, true);
 
                 for($i=0,$j=0;$i<count($eng);$i++,$j++)
@@ -113,7 +113,7 @@ class AdminController extends Controller
 
                 $newJsonString = json_encode($json_data, JSON_PRETTY_PRINT);
 
-                $path =  file_put_contents(base_path('resources/lang/'.$list) , $newJsonString);
+                $path =  file_put_contents(storage_path('app/public/json/'.$list) , $newJsonString);
 
             }
         }
@@ -126,8 +126,12 @@ class AdminController extends Controller
         if($path)
             return redirect()->route('home');
     }
-    public function downloadjson(Request $request)
+    public function downloadjson()
     {
-        echo $request->id;
+        $jplist = Jplist::where('id',request('id'))->get()->first();
+
+        $jsonString = file_get_contents(storage_path('app/public/json'.$jplist->json_name));
+        // echo $request->id;
+        return $jsonString;
     }
 }
